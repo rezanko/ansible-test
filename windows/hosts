@@ -1,0 +1,10 @@
+windows2012 ansible_host=192.168.30.141
+windows2012AsDA ansible_host=192.168.30.141
+
+windows2016 ansible_host=10.115.115.224
+2016AsDomainAdmin ansible_host=10.115.115.224
+
+
+[domain]
+ws2012 ansible_host=192.168.30.173
+ws2016 ansible_host=192.168.30.144

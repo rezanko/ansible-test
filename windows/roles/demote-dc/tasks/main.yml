@@ -1,0 +1,24 @@
+- name: set DNS Server lookup to new DC
+  win_dns_client:
+    adapter_names: Ethernet0
+    ipv4_addresses: 192.168.30.144
+
+- name: Demote old AD DC
+  win_domain_controller:
+    domain_admin_user: "{{ dom_adm_user }}"
+    domain_admin_password: "{{ dom_adm_pass }}"
+    local_admin_password: "{{ local_adm_pass }}"
+    state: member_server
+    log_path: c:\ansible_win_domain_controller.txt
+#  register: result
+
+#- name: set to local admin user
+#  set_fact:
+#    ansible_user: "{{ local_adm_user }}"
+#    ansible_password: "{{ local_adm_pass }}"
+
+#- name: Restart after demoting
+#  win_reboot:
+#  when: result is changed
+
+

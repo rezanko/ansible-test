@@ -1,0 +1,21 @@
+---
+- hosts: ws2016
+  gather_facts: no
+
+  vars_prompt:
+    - name: "dom_recovery_pass"
+      prompt: "Enter domain recovery password: "
+
+  tasks:
+    - name: set to another user
+      set_fact:
+        ansible_user: Administrator@percobaan.local
+        ansible_password: mahdi1#
+
+    - name: check user
+      command: whoami
+
+  roles:
+    - install-ad
+    - promote-addc
+    - transfer-fsmo

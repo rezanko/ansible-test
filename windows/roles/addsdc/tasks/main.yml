@@ -1,0 +1,33 @@
+- name: changing hostname
+  win_hostname:
+    name: "{{ name }}"
+  register: res
+
+- name: reboot after hostname change
+  win_reboot:
+  when: res.reboot_required
+
+- name: install ADDS
+  win_feature:
+    name: AD-Domain-Services
+    include_management_tools: yes
+    include_sub_features: yes
+    state: present
+  register: ad_state
+
+- name: check domain exists / if not, create the domain
+  win_domain:
+    dns_domain_name: "{{ domain }}"
+    safe_mode_password: "{{ dom_recovery_pass }}"
+  when: ad_state is changed
+  register: result
+
+# GA PERLU SWITCH USER - DELETED SOON
+#- name: switching user to domain admin
+#  set_fact: 
+#    ansible_user: "{{ dom_adm_user }}"
+#    ansible_password: "{{ dom_adm_pass }}"
+
+- name: reboot domain change
+  win_reboot:
+  when: result.reboot_required

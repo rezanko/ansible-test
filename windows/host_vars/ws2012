@@ -1,0 +1,14 @@
+---
+ansible_user: Administrator
+ansible_password: mahdi1#
+
+
+
+#ansible_port: 5985
+#ansible_connection: winrm
+#ansible_winrm_transport: ntlm
+
+#name: Test-1
+#domain: percobaan.com
+#dom_adm_pass: mahdi1#
+#dns_server: 192.168.30.131

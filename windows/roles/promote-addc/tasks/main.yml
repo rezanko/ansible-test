@@ -1,0 +1,39 @@
+
+- name: Promote as Domain Controller
+  win_domain_controller:
+    dns_domain_name: "{{ domain }}"
+    domain_admin_user: "{{ dom_adm_user }}"
+    domain_admin_password: "{{ dom_adm_pass }}"
+    safe_mode_password: "{{ dom_recovery_pass }}"
+    state: domain_controller
+    log_path: c:\ansible_win_domain_controller.txt
+  register: result
+
+#- name: switch user to domain admin
+#  set_fact:
+#    ansible_user: "Administrator@{{ domain }}"
+#    ansible_password: "{{ dom_adm_pass }}"
+
+#- name: restarting server
+#  win_reboot:
+#    reboot_timeout: 200
+#  when: result is changed
+#  register: r
+#  changed_when: "r.restarted != true"
+
+- name: restarting server
+  win_command: shutdown /r /f
+  when: result is changed
+
+- name: switch user to domain admin
+  set_fact:
+    ansible_user: "{{ dom_adm_user }}"
+    ansible_password: "{{ dom_adm_pass }}"
+
+- name: wait for system to go up
+  wait_for_connection:
+
+- name: switch DNS server lookup to localhost
+  win_dns_client:
+    adapter_names: Ethernet0
+    ipv4_addresses: 127.0.0.1

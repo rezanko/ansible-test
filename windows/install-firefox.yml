@@ -1,0 +1,10 @@
+---
+
+- name: install firefox using chocolatey
+  hosts: windows2
+  tasks:
+    - name: installing firefox
+      win_chocolatey:
+        name: firefox
+        state: present
+

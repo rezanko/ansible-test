@@ -1,0 +1,18 @@
+- name: set DNS server address
+  win_dns_client:
+    adapter_names: Ethernet0
+    ipv4_addresses: "{{ dns_server }}"
+
+- name: join existing domain
+  win_domain_membership:
+    dns_domain_name: "{{ domain }}"
+    hostname: "{{ name }}"
+    domain_admin_user: "{{ dom_adm_user }}"
+    domain_admin_password: "{{ dom_adm_pass }}"
+    state: domain
+  register: result
+
+- name: rebooting after domain change
+  win_reboot:
+  when: result is changed
+  

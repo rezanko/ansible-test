@@ -1,0 +1,13 @@
+#- name: install PSExec
+#  win_chocolatey:
+#    name: psexec
+#    state: present
+
+- name: transfer FSMO to new DC
+  block:
+    - win_command: powershell.exe -noprofile -command "&Move-ADDirectoryServerOperationMasterRole -Identity "{{ name }}" -OperationMasterRole 0,1,2,3,4 -Confirm:$false"
+#    - win_command: powershell.exe -noprofile -command "&Move-ADDirectoryServerOperationMasterRole -Identity "{{ name }}" -OperationMasterRole 0,1,2,3,4 -Force -Confirm:$false"
+    - win_command: repadmin /syncall
+  become_method: runas
+  become_user: "{{ dom_adm_user }}"
+  become: yes

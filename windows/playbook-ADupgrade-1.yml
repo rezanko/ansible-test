@@ -1,0 +1,5 @@
+---
+- hosts: windows2012
+  gather_facts: no
+  roles:
+    - ad-member

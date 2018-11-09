@@ -1,0 +1,4 @@
+- name: "switching to domain user {{ dom_adm_user }}"
+  set_fact:
+    ansible_user: "{{ dom_adm_user }}"
+    ansible_password: "{{ dom_adm_pass }}"

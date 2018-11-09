@@ -1,0 +1,10 @@
+---
+
+- name: install git using chocolatey
+  hosts: windows2
+  tasks:
+    - name: installing git
+      win_chocolatey:
+        name: git
+        state: present
+

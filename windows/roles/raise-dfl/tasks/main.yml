@@ -1,0 +1,6 @@
+- name: copy PS script to target
+  win_copy:
+    src: ../modules/raise-dfl.ps1
+    dest: c:\raise-dfl.ps1
+
+- win_shell: C:\raise-dfl.ps1 >> C:\raise-dfl.txt

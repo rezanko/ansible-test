@@ -1,0 +1,13 @@
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+ansible_port: 5985
+
+domain: percobaan.com
+dom_adm_user: "Administrator@{{ domain }}"
+dom_adm_pass: mahdi1#
+
+local_adm_user: TEST-1\Administrator
+#local_adm_pass: P@ssw0rd
+
+
+

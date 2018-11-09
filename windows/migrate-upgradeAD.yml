@@ -1,0 +1,28 @@
+
+---
+
+- hosts: ws2016
+  gather_facts: no
+  vars_prompt:
+    - name: "dom_recovery_pass"
+      prompt: "Set domain recovery pass:"
+  roles:
+    - ad-member
+    - install-ad
+    - promote-addc
+    - transfer-fsmo
+
+- hosts: ws2012
+  gather_facts: no
+  vars_prompt:
+    - name: "local_adm_pass"
+      prompt: "Set new local admin password for demoted server"
+  roles:
+    - demote-dc
+
+- hosts: ws2016
+  gather_facts: no
+  roles:
+    - win-switch-domain-user
+    - raise-dfl
+    - raise-ffl

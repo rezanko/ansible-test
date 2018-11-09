@@ -1,0 +1,10 @@
+- name: copy PS script to target
+  win_copy:
+    src: ../modules/raise-ffl.ps1
+    dest: c:\raise-ffl.ps1
+
+- win_shell: c:\raise-ffl.ps1 >> c:\raise-ffl.txt
+
+- name: restart the server
+  win_reboot:
+

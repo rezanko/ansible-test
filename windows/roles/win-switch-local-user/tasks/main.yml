@@ -1,0 +1,4 @@
+- name: "switching to local user {{ local_adm_user }}"
+  set_fact:
+    ansible_user: "{{ local_adm_user }}"
+    ansible_password: "{{ local_adm_pass }}"

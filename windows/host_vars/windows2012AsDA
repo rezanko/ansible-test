@@ -1,0 +1,13 @@
+---
+ansible_user: "Administrator@{{ domain }}"
+ansible_password: P@ssw0rd
+ansible_port: 5985
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+
+name: DC-JKT3
+domain: blah.local
+
+become_method: runas
+ansible_become_password: "{{ ansible_password }}"
+dom_adm_pass: P@ssw0rd

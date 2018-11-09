@@ -1,0 +1,10 @@
+---
+
+- name: install putty using chocolatey
+  hosts: windows2016
+  tasks:
+    - name: installing putty
+      win_chocolatey:
+        name: putty.install
+        state: present
+

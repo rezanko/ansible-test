@@ -1,0 +1,5 @@
+---
+- import_playbook: playbook-ADupgrade-1.yml
+- import_playbook: playbook-ADupgrade-2.yml
+- import_playbook: playbook-ADupgrade-3.yml
+- import_playbook: playbook-ADupgrade-4.yml

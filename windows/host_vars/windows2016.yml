@@ -1,0 +1,9 @@
+---
+ansible_user: Administrator
+ansible_password: P@ssw0rd
+ansible_port: 5985
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+
+name: DC-WS2016
+domain: blah.local

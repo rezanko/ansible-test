@@ -1,0 +1,21 @@
+---
+- hosts: ws2012
+  gather_facts: no
+  vars_prompt:
+    - name: "name"
+      prompt: "Set machine hostname"
+      private: no
+
+#    - name: "domain"
+#      prompt: "Set domain name to be created"
+#      private: no
+
+    - name: "dom_recovery_pass"
+      prompt: "Set domain recovery password"
+      private: yes
+      confirm: yes
+      encrypt: "sha512_crypt"
+      salt_size: 7
+
+  roles:
+    - addsdc

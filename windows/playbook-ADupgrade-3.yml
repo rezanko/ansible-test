@@ -1,0 +1,5 @@
+---
+- hosts: ws2012
+  gather_facts: false
+  roles:
+    - demote-dc
